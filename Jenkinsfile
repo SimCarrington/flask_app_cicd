@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat '"C:\\Program Files\\Python313\\Scripts\\pip.exe" install -r requirements.txt'
             }
         }
 
         stage('Run Unit Tests') {
             steps {
-                bat 'python -m unittest discover'
+                bat '"C:\\Program Files\\Python313\\python.exe" -m unittest discover'
             }
         }
 
@@ -27,3 +27,4 @@ pipeline {
         }
     }
 }
+
