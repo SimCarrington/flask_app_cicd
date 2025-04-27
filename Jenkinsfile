@@ -4,27 +4,25 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Unit Tests') {
             steps {
-                sh 'python -m unittest discover'
+                bat 'python -m unittest discover'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build('flask_app_cicd_image')
-                }
+                bat 'docker build -t flask_app_cicd_image .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 5000:5000 flask_app_cicd_image'
+                bat 'docker run -d -p 5000:5000 flask_app_cicd_image'
             }
         }
     }
